@@ -16,8 +16,8 @@ function getCmomputerChoice() {
       
    }
 
-  let computerscore = 0;
-  let humanscore = 0;
+  let computerscore = 0; // variabler i global scope 
+  let humanscore = 0; // variabler i global scope 
 
    function playGame() {
    let count = 0;
@@ -68,7 +68,7 @@ playRound(humanSelection, computerSelection);
     console.log(computerscore, "You loose the Round!"); 
     }
     }
-    playGame()
+    playGame() // Kalder funktionen playgame her
 
 
 
