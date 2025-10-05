@@ -10,65 +10,120 @@ function getCmomputerChoice() {
    } 
 
 
-   function getHumanChoice() {
-     let input = window.prompt("Type rock, paper or scissors");
-      return input;
-      
-   }
 
   let computerscore = 0; // variabler i global scope 
   let humanscore = 0; // variabler i global scope 
 
-   function playGame() {
-   let count = 0;
-   while (count < 5) {
-   const humanSelection = getHumanChoice();
-  const computerSelection = getCmomputerChoice();
-playRound(humanSelection, computerSelection);
-   console.log("Round", count+1);
-   console.log("Current score:", "Human =", humanscore, "Computer= ", computerscore)
-   count++;
-   }
-   console.log("final scrore:", "Human =", humanscore, "Computer =", computerscore);
-   if (humanscore === computerscore) {
-    console.log("Entire Game is a tie");
-  } else if (humanscore > computerscore) {
-    console.log("YOU WIN ENTIRE GAME");
-   } else {
-    console.log("Sorry, but computer wins all");
-   }
-  }
+
 
     function playRound(humanChoice, computerChoice) {
+      let outcome = "";
 
      humanChoice = humanChoice.toLowerCase()
-    console.log("human chose:", humanChoice);
-    console.log("computer chose:", computerChoice);
+    
+    
     
     if (humanChoice === computerChoice) {
-      console.log("Its a tie!");
+      outcome = "Its a tie!";
+      return outcome;
     
      } else if (humanChoice === "rock" && computerChoice === "scissors") {
     humanscore++;
-    console.log(humanscore, "You win The Round!");
+    outcome = "You Win!";
+    return outcome;
+
 
 
      } else if (humanChoice === "scissors" && computerChoice === "paper") {
     humanscore++;
-    console.log(humanscore, "You win The Round!");
+    outcome = "You Win!";
+    return outcome;
 
 
      } else if (humanChoice === "paper" && computerChoice === "rock") {
     humanscore++;
-    console.log(humanscore, "You win The Round!");
+    outcome = "You Win!";
+    return outcome;
 
  
      } else {
     computerscore++;
-    console.log(computerscore, "You loose the Round!"); 
+    outcome = "You loose";
+    return outcome;
+  
     }
     }
-    playGame() // Kalder funktionen playgame her
+  
+
+    const button = document.createElement("button");
+    const button1 = document.createElement("button");
+    const button2 = document.createElement("button");
+    let results = document.createElement("div");
+    let linechoices = document.createElement("p");
+    let lineoutcome = document.createElement("p");
+    let linescore = document.createElement("p");
+    let finalwinner = document.createElement("p");
+
+    
+    
+    
+
+    
+
+    button.textContent = "rock";
+    button1.textContent = "scissors";
+    button2.textContent = "paper";
+   document.body.append(button, button1, button2, results);
+   results.appendChild(linechoices);
+   results.appendChild(lineoutcome);
+   results.appendChild(linescore);
+   results.appendChild(finalwinner);
+
+
+
+
+
+    button.addEventListener("click", () => { 
+      const playerchoice = "rock";
+      const computerchoice = getCmomputerChoice();
+      const roundResults = playRound(playerchoice, computerchoice);
+      linechoices.textContent = "You chose rock, and " + " computer chose " + computerchoice;
+      lineoutcome.textContent = roundResults;
+      linescore.textContent = "Score: Human " + humanscore + " Computer " + computerscore;
+      if (humanscore === 5 || computerscore === 5)
+        finalwinner.textContent = "Game is over";
+    
+    });
+   
+    
+    button1.addEventListener("click", () => {
+      const playerchoice = "scissors";
+      const computerchoice = getCmomputerChoice();
+      const roundResults = playRound(playerchoice, computerchoice);
+      linechoices.textContent = "You chose scissors, and " + " computer chose " + computerchoice;
+      lineoutcome.textContent = roundResults;
+      linescore.textContent = "Score: Human " + humanscore + " Computer " + computerscore;
+      if (humanscore === 5 || computerscore === 5)
+        finalwinner.textContent = "Game is over!"
+      
+
+
+    });
+    
+    button2.addEventListener("click", () => {
+      const playerchoice = "paper";
+      const computerchoice = getCmomputerChoice();
+      const roundResults = playRound(playerchoice, computerchoice);
+      linechoices.textContent = "You chose paper, and " + " computer chose " + computerchoice;
+      lineoutcome.textContent = roundResults;
+      linescore.textContent = "Score: Human " + humanscore + " Computer " + computerscore;
+      if (humanscore === 5 || computerscore === 5)
+        finalwinner.textContent = "Game is over!";
+      
+    });
+    
+
+ 
 
 
 
